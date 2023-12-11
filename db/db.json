@@ -1,0 +1,85 @@
+{
+  "crates": [
+    {
+      "id": 1,
+      "name": "Box of Apples",
+      "description": "They look delicious. They are not for you.",
+      "weight": 10,
+      "value": 14.99,
+      "deliverytype": "long-distance",
+      "status": "waiting"
+    },
+    {
+      "id": 2,
+      "name": "Electromagnetic German Forks",
+      "description": "They don't look delicious.",
+      "weight": 12000,
+      "value": 149.9,
+      "deliverytype": "long-distance",
+      "status": "waiting"
+    },
+    {
+      "id": 3,
+      "name": "Paper Spoons",
+      "description": "Not electromagnetic.",
+      "weight": 0.1,
+      "value": 1.99,
+      "deliverytype": "short-distance",
+      "status": "waiting"
+    }
+  ],
+  "trucks": [
+    {
+      "id": 1,
+      "name": "Truck 1",
+      "capacity": 200,
+      "deliverytype": "long-distance",
+      "status": "ready"
+    },
+    {
+      "id": 2,
+      "name": "Truck 2",
+      "capacity": 198,
+      "deliverytype": "long-distance",
+      "status": "ready"
+    },
+    {
+      "id": 3,
+      "name": "Truck 3",
+      "capacity": 80,
+      "deliverytype": "short-distance",
+      "status": "ready"
+    },
+    {
+      "id": 4,
+      "name": "Truck 4",
+      "capacity": 80,
+      "deliverytype": "short-distance",
+      "status": "ready"
+    }
+  ],
+  "conveyors": [
+    {
+      "id": 1,
+      "name": "Conveyor Alpha",
+      "capacity": 120,
+      "status": "Empty",
+      "cost": 50
+    },
+    {
+      "id": 2,
+      "name": "Conveyor Bravo",
+      "capacity": 100,
+      "status": "Empty",
+      "cost": 40
+    },
+    {
+      "id": 3,
+      "name": "Conveyor Charlie",
+      "capacity": 80,
+      "status": "Empty",
+      "cost": 30
+    }
+  ],
+  "deliveries": []
+}

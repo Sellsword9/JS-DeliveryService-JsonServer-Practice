@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carg0 Manager -- REMEMBER: YOU ARE HERE FOREVER</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <h1>WELCOME TO CARG-0 MANAGER</h1>
+  <h2>REMEMBER: YOU'RE HERE FOREVER</h2>
+  <section class="balance">
+    <h1>Balance: +0000</h1>
+  </section>
+  <h1>CRATE HAUL</h1>
+  <div id="inputCrates">
+  </div>
+  <h1>CRATE ADMIN</h1>
+  <div id="adminCrates">
+    <form>
+      <label for="crateName">Crate Name</label>
+      <input type="text" id="crateName" name="crateName" placeholder="Crate Name">
+      <label for="crateDesc">Crate Desc </label>
+      <input type="text" id="crateDesc" name="crateDesc" placeholder="Description">
+      <label for="crateQuantity">Crate Value</label>
+      <input type="text" id="crateValue" name="crateValue" placeholder="$$$">
+      <label for="crateWeight">Crate Weight</label>
+      <input type="text" id="crateWeight" name="crateWeight" placeholder="kg">
+      <label for="crateDeliveryDistance">Crate Delivery Distance</label>
+      <select id="crateDeliveryDistance" name="crateDeliveryDistance">
+        <option value="0">Short-distance</option>
+        <option value="1">Long-distance</option>
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+
+</html>
