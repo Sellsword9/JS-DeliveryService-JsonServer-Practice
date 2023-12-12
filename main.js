@@ -1,7 +1,12 @@
-const urlCrates = 'http://localhost:3000/crates';
-const urlTrucks = 'http://localhost:3000/trucks';
-const urlConveyors = 'http://localhost:3000/conveyors';
-const urlDeliveries = 'http://localhost:3000/deliveries';
+import { fetchTrucks } from "./utils/fetchTrucks";
+import { fetchCrates } from "./utils/fetchCrates";
+import { fetchDeliveries } from "./utils/fetchDeliveries";
+import { fetchConveyors } from "./utils/fetchConveyors";
+
+export const urlCrates = 'http://localhost:3000/crates';
+export const urlTrucks = 'http://localhost:3000/trucks';
+export const urlConveyors = 'http://localhost:3000/conveyors';
+export const urlDeliveries = 'http://localhost:3000/deliveries';
 const template = `
       <div class="crateinfo">
         <h3>CRATE NAME</h3>
@@ -28,6 +33,9 @@ const template = `
         </select>
         <input type="submit" value="SEND CRATE">
       </form>`;
+
+
+// functions
 
 async function sendCrate(crateElement) {
   const trucks = await fetchTrucks();
@@ -66,6 +74,7 @@ async function sendCrate(crateElement) {
 
 
 // on document load, fetch crates and append them to the DOM
+
 async function loadCrates(element) {
   const crates = await fetchCrates();
   const conveyors = await fetchConveyors();
@@ -94,28 +103,7 @@ async function loadCrates(element) {
 
 
 
-async function fetchCrates() {
-  const response = await fetch(urlCrates);
-  const crates = await response.json();
-  return crates;
-}
-const fetchTrucks = async () => {
-  const response = await fetch(urlTrucks);
-  const trucks = await response.json();
-  return trucks;
-}
-const fetchConveyors = async () => {
-  const response = await fetch(urlConveyors);
-  const conveyors = await response.json();
-  return conveyors;
-}
-const fetchDeliveries = async () => {
-  const response = await fetch(urlDeliveries);
-  const deliveries = await response.json();
-  return deliveries;
-}
-
-// profits
+// profits calculus
 
 async function updateProfits(crates, conveyors) {
   const deliveries = await fetchDeliveries();
