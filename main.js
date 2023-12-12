@@ -37,14 +37,12 @@ async function sendCrate(crateElement) {
 
   const truckId = truckElement.value;
   const conveyorId = conveyorElement.value;
-
-  const truck = trucks.find(t => t.id === truckId);
-  const conveyor = conveyors.find(c => c.id === conveyorId);
+  const truck = trucks.find(t => truckId.includes(t.id));
+  const conveyor = conveyors.find(c => conveyorId.includes(c.id));
 
   const crateId = crateElement.dataset.id;
-
   if (truck && conveyor) {
-    const response = await fetch(`${urlCrates}/${crateId}`, {
+    const response = await fetch(`${urlDeliveries}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -57,6 +55,8 @@ async function sendCrate(crateElement) {
     });
     if (response.ok) {
       crateElement.remove();
+      let crates = await fetchCrates();
+      updateProfits(crates, conveyors);
     } else {
       alert('Something went wrong');
     }
@@ -68,6 +68,11 @@ async function sendCrate(crateElement) {
 // on document load, fetch crates and append them to the DOM
 async function loadCrates(element) {
   const crates = await fetchCrates();
+  const conveyors = await fetchConveyors();
+  const deliveries = await fetchDeliveries();
+  if (deliveries && deliveries.length > 0) {
+    updateProfits(crates, conveyors);
+  }
   crates.forEach(crate => {
     const crateElement = document.createElement('div');
     crateElement.classList.add('crate');
@@ -77,7 +82,7 @@ async function loadCrates(element) {
     crateElement.querySelector('p:nth-of-type(1)').innerText = crate.description;
     crateElement.querySelector('p:nth-of-type(2)').innerText = crate.weight;
     crateElement.querySelector('p:nth-of-type(3)').innerText = crate.value;
-    crateElement.querySelector('p:nth-of-type(4)').innerText = crate.deliveryType;
+    crateElement.querySelector('p:nth-of-type(4)').innerText = crate.deliverytype;
     crateElement.querySelector('p:nth-of-type(5)').innerText = crate.status;
     element.appendChild(crateElement);
     crateElement.querySelector('form').addEventListener('submit', (event) => {
@@ -94,6 +99,45 @@ async function fetchCrates() {
   const crates = await response.json();
   return crates;
 }
+const fetchTrucks = async () => {
+  const response = await fetch(urlTrucks);
+  const trucks = await response.json();
+  return trucks;
+}
+const fetchConveyors = async () => {
+  const response = await fetch(urlConveyors);
+  const conveyors = await response.json();
+  return conveyors;
+}
+const fetchDeliveries = async () => {
+  const response = await fetch(urlDeliveries);
+  const deliveries = await response.json();
+  return deliveries;
+}
+
+// profits
+
+async function updateProfits(crates, conveyors) {
+  const deliveries = await fetchDeliveries();
+  let crate, conveyor;
+  const profits = deliveries.reduce((acc, delivery) => {
+    crate = crates.find(c => delivery.crateId.includes(c.id));
+    conveyor = conveyors.find(c => delivery.conveyorId.includes(c.id));
+    const deliveryCost = conveyor.cost;
+    const deliveryProfit = crate.value - deliveryCost;
+    return acc + deliveryProfit;
+  }, 0);
+  const profitsElement = document.getElementById('profitList');
+  profitsElement.innerText += `
+    Total profits: ${profits}
+    Crate: ${crate.name}->+$${crate.value},
+    Conveyor: ${conveyor.name}->$${conveyor.cost},`;
+  document.querySelector('.balance').querySelector('h1').innerText = `Balance: $${profits}`;
+}
+
+
+
+
 
 
 const crateDisplayer = document.getElementById("inputCrates");

@@ -5,7 +5,7 @@
       "name": "Box of Apples",
       "description": "They look delicious. They are not for you.",
       "weight": 10,
-      "value": 14.99,
+      "value": 120,
       "deliverytype": "long-distance",
       "status": "waiting"
     },
@@ -14,7 +14,7 @@
       "name": "Electromagnetic German Forks",
       "description": "They don't look delicious.",
       "weight": 12000,
-      "value": 149.9,
+      "value": 900,
       "deliverytype": "long-distance",
       "status": "waiting"
     },
@@ -23,7 +23,7 @@
       "name": "Paper Spoons",
       "description": "Not electromagnetic.",
       "weight": 0.1,
-      "value": 1.99,
+      "value": 50,
       "deliverytype": "short-distance",
       "status": "waiting"
     }
@@ -81,5 +81,42 @@
       "cost": 30
     }
   ],
-  "deliveries": []
+  "deliveries": [
+    {
+      "crateId": "1",
+      "truckId": "truck3",
+      "conveyorId": "conveyor3",
+      "id": 1
+    },
+    {
+      "crateId": "2",
+      "truckId": "truck4",
+      "conveyorId": "conveyor3",
+      "id": 2
+    },
+    {
+      "crateId": "3",
+      "truckId": "truck1",
+      "conveyorId": "conveyor1",
+      "id": 3
+    },
+    {
+      "crateId": "1",
+      "truckId": "truck2",
+      "conveyorId": "conveyor1",
+      "id": 4
+    },
+    {
+      "crateId": "2",
+      "truckId": "truck3",
+      "conveyorId": "conveyor2",
+      "id": 5
+    },
+    {
+      "crateId": "3",
+      "truckId": "truck4",
+      "conveyorId": "conveyor1",
+      "id": 6
+    }
+  ]
 }
